@@ -9,6 +9,11 @@ class Trainer:
     def num_pokemon(self):
         for pokemon in self.pokemon_party:
             print(pokemon.name)
+    # def max_health(self, pokemon_party):
+    #     count = 0
+    #     if self.pokemon_party[count].health > self.pokemon_party[count].max_health:
+    #         self.pokemon_party[count].health == self.pokemon_party[count].max_health
+    #     count += 1
 
 
 class Enemy:
