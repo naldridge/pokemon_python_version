@@ -14,14 +14,14 @@ class Battle:
 
             print("\033c")
             print(f'\n{self.enemy.name} wants to battle') 
-            print(f'{self.enemy.name} sent out {self.enemy.pokemon_party[0].name}!')
+            print(f'{self.enemy.name} sent out {self.enemy.pokemon_party[enemy_pokemon].name}!')
             print("")
-            print(f'{self.trainer.name} sent out {self.trainer.pokemon_party[0].name}!')
+            print(f'{self.trainer.name} sent out {self.trainer.pokemon_party[current_pokemon].name}!')
             while self.party_status(self.trainer.pokemon_party) > 0 and self.party_status(self.enemy.pokemon_party) > 0:
                 
                 
                 # substitute all 0's with new variables to signify the current index
-                while self.trainer.pokemon_party[current_pokemon].health > 0 and self.enemy.pokemon_party[enemy_pokemon].health > 0:
+                while self.trainer.pokemon_party[current_pokemon].health > 0 and self.enemy.pokemon_party[enemy_pokemon].health > 0:    
                     # Pokemon attack options for user
                     t_party = self.trainer.pokemon_party
                     e_party = self.enemy.pokemon_party
@@ -42,7 +42,6 @@ class Battle:
                     print(f'Enemy {self.enemy.pokemon_party[enemy_pokemon].name} fainted!\n')
                     enemy_pokemon += 1
                 else:
-                    print(f'Your {self.trainer.pokemon_party[current_pokemon].name} fainted!\n')
                     current_pokemon += 1
         if self.party_status(self.trainer.pokemon_party):
             print(f'You defeated {self.enemy.name}!')
