@@ -17,10 +17,9 @@ class Battle:
             print(f'{self.enemy.name} sent out {self.enemy.pokemon_party[enemy_pokemon].name}!')
             print("")
             print(f'{self.trainer.name} sent out {self.trainer.pokemon_party[current_pokemon].name}!')
+            # Check trainer and enemy still have pokemon to send out
             while self.party_status(self.trainer.pokemon_party) > 0 and self.party_status(self.enemy.pokemon_party) > 0:
-                
-                
-                # substitute all 0's with new variables to signify the current index
+                # Check current pokemon is not fainted
                 while self.trainer.pokemon_party[current_pokemon].health > 0 and self.enemy.pokemon_party[enemy_pokemon].health > 0:    
                     # Pokemon attack options for user
                     t_party = self.trainer.pokemon_party
@@ -36,13 +35,14 @@ class Battle:
                     if self.alive(self.enemy.pokemon_party[enemy_pokemon]):
                         t_party[current_pokemon].health -= e_party[current_pokemon].attacks[0].damage
                         print(f'The enemy {e_party[enemy_pokemon].name} used {e_party[enemy_pokemon].attacks[0].name}, {t_party[current_pokemon].name} has {t_party[current_pokemon].health} HP\n')
-
-                
+                # Check to see if pokemon fainted after attack sequence, change pokemon at the start of the loop
                 if self.alive(self.trainer.pokemon_party[current_pokemon]):
                     print(f'Enemy {self.enemy.pokemon_party[enemy_pokemon].name} fainted!\n')
                     enemy_pokemon += 1
                 else:
+                    print(f'{self.trainer.pokemon_party[current_pokemon].name} fainted\n')
                     current_pokemon += 1
+        # After healthy pokemon check finishes, check to see whose pokemon party is still alive
         if self.party_status(self.trainer.pokemon_party):
             print(f'You defeated {self.enemy.name}!')
             input("Press enter to continue")
