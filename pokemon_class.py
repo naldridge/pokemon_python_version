@@ -32,7 +32,7 @@ charizard_attacks = [flamethrower, wing_attack, slash, fire_blast]
 houndoom = Pokemon("Houndoom", 110, houndoom_attacks )
 electabuzz = Pokemon("Electabuzz", 110, electabuzz_attacks)
 snorlax = Pokemon("Snorlax", 200, snorlax_attacks)
-charizard = Pokemon("Charizard", 110, )
+charizard = Pokemon("Charizard", 110, charizard_attacks)
 
 sampai = Enemy("Sam-pai", [houndoom, snorlax])
 trainer = Trainer("Rodrigo", [electabuzz, charizard])
@@ -51,5 +51,5 @@ ______     _                               ______      _   _                   _
 input("Press enter to continue")
 print("\033c")
 
-battle1 = Battle(trainer, sampai)
-battle1.battle()
+battle_sam = Battle(trainer, sampai)
+battle_sam.battle()

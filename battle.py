@@ -19,7 +19,6 @@ class Battle:
                 
                 
                 # substitute all 0's with new variables to signify the current index
-
                 while self.trainer.pokemon_party[current_pokemon].health > 0 and self.enemy.pokemon_party[enemy_pokemon].health > 0:
                     # Pokemon attack options for user
                     t_party = self.trainer.pokemon_party
@@ -30,13 +29,11 @@ class Battle:
                         count += 1
                     user_input = Validate().range(1, len(t_party[current_pokemon].attacks), "Please choose a valid option", "What would you like to do? ")
                     #user_input = input()
-                    print(f'You chose {t_party[current_pokemon].attacks[user_input - 1].name}')
                     e_party[enemy_pokemon].health -= t_party[current_pokemon].attacks[user_input - 1].damage
-                    #t_party[current_pokemon].health -= e_party[current_pokemon].attacks[0].damage
-                    print(f'The enemy {e_party[enemy_pokemon].name} now has {e_party[enemy_pokemon].health} HP')
+                    print(f'{t_party[current_pokemon].name} used {t_party[current_pokemon].attacks[user_input - 1].name}, the enemy {e_party[enemy_pokemon].name} now has {e_party[enemy_pokemon].health} HP')
                     if self.alive(self.enemy.pokemon_party[enemy_pokemon]):
                         t_party[current_pokemon].health -= e_party[current_pokemon].attacks[0].damage
-                        print(f'The enemy {e_party[enemy_pokemon].name} used {e_party[enemy_pokemon].attacks[0].name}, {t_party[current_pokemon].name} has {t_party[current_pokemon].health}')
+                        print(f'The enemy {e_party[enemy_pokemon].name} used {e_party[enemy_pokemon].attacks[0].name}, {t_party[current_pokemon].name} has {t_party[current_pokemon].health} HP')
 
                 
                 if self.alive(self.trainer.pokemon_party[current_pokemon]):
