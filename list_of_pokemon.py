@@ -83,5 +83,5 @@ all_options = [charizard, blastoise, venusaur, alakazam, snorlax, gyarados, mach
 
 sean = Enemy("Team Rocket Leader Sean", [persian, mewtwo])
 sampai = Enemy("Sam-pai", [murkrow, arbok])
-zackhary = Enemy("Zachary", [koffing, houndoom])
-trainer = Trainer("Rodrigo", pokemon_party, all_options)
+zachary = Enemy("Zachary", [koffing, houndoom])
+trainer = Trainer("Rodrigo", pokemon_party)
