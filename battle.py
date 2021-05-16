@@ -70,6 +70,7 @@ class Battle:
                     e_party[enemy_pokemon].health -= t_party[current_pokemon].attacks[user_input - 1].damage
                     print("\033c")
                     print(f'\n{t_party[current_pokemon].name} used {t_party[current_pokemon].attacks[user_input - 1].name}, the enemy {e_party[enemy_pokemon].name} now has {e_party[enemy_pokemon].health} HP')
+                    # User attacks first, and if enemy pokemon is still alive, they will return with an attack
                     if self.alive(self.enemy.pokemon_party[enemy_pokemon]):
                         t_party[current_pokemon].health -= e_party[current_pokemon].attacks[0].damage
                         print(f'The enemy {e_party[enemy_pokemon].name} used {e_party[enemy_pokemon].attacks[0].name}, {t_party[current_pokemon].name} has {t_party[current_pokemon].health} HP\n')
