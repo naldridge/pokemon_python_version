@@ -4,6 +4,36 @@ class Battle:
     def __init__(self, trainer, enemy):
         self.trainer = trainer
         self.enemy = enemy
+
+    # Function checks to make sure there is at least one pokemon with health above 0 in the party
+    def party_status(self, party):
+        count = 0
+        dead_pokemon = 0
+        while len(party) > count:
+            if party[count].health <= 0:
+                dead_pokemon += 1
+            count += 1
+        if dead_pokemon == len(party):
+            return False
+        else:
+            return True
+
+    # Function checks to make sure specific pokemon's health is above 0
+    def alive(self, pokemon):
+        if pokemon.health > 0:
+            return True
+        else:
+            return False
+
+    # Function checks to make sure both pokemon health attributes are set equal (Restores health)
+    def max_health(self, party):
+        count = 0
+        while len(party) > count:
+            if party[count].max_health > party[count].health:
+                party[count].health = party[count].max_health
+            count += 1
+
+    # Entire battle function
     def battle(self):
         self.max_health(self.trainer.pokemon_party)
         if len(self.trainer.pokemon_party) == 0:
@@ -11,14 +41,22 @@ class Battle:
         else:
             current_pokemon = 0
             enemy_pokemon = 0
+            cp = 0
+            ep = 0
 
             print("\033c")
             print(f'\n{self.enemy.name} wants to battle') 
-            print(f'{self.enemy.name} sent out {self.enemy.pokemon_party[enemy_pokemon].name}!')
-            print("")
-            print(f'{self.trainer.name} sent out {self.trainer.pokemon_party[current_pokemon].name}!')
             # Check trainer and enemy still have pokemon to send out
             while self.party_status(self.trainer.pokemon_party) > 0 and self.party_status(self.enemy.pokemon_party) > 0:
+                if current_pokemon > cp:
+                    print(f'{self.trainer.name} sent out {self.trainer.pokemon_party[current_pokemon].name}!\n')
+                    cp += 1
+                elif enemy_pokemon > ep:
+                    print(f'{self.enemy.name} sent out {self.enemy.pokemon_party[enemy_pokemon].name}!\n')
+                    ep += 1
+                else:
+                    print(f'{self.enemy.name} sent out {self.enemy.pokemon_party[enemy_pokemon].name}!\n')
+                    print(f'{self.trainer.name} sent out {self.trainer.pokemon_party[current_pokemon].name}!\n')                
                 # Check current pokemon is not fainted
                 while self.trainer.pokemon_party[current_pokemon].health > 0 and self.enemy.pokemon_party[enemy_pokemon].health > 0:    
                     # Pokemon attack options for user
@@ -49,33 +87,3 @@ class Battle:
         else:
             print(f'{self.enemy.name} defeated you!')
             input("Press enter to continue")
-
-
-
-# make a new function to check alive status
-    def party_status(self, party):
-        count = 0
-        dead_pokemon = 0
-        while len(party) > count:
-            if party[count].health <= 0:
-                dead_pokemon += 1
-            count += 1
-        if dead_pokemon == len(party):
-            return False
-        else:
-            return True
-# whenever dead pokemon variable is equal to the length of your pokemon party, return false
-
-
-    def alive(self, pokemon):
-        if pokemon.health > 0:
-            return True
-        else:
-            return False
-    
-    def max_health(self, party):
-        count = 0
-        while len(party) > count:
-            if party[count].max_health > party[count].health:
-                party[count].health = party[count].max_health
-            count += 1    
