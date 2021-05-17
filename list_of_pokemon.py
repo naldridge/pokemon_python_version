@@ -79,9 +79,10 @@ pidgeot = Pokemon("Pidgeot", 120, 120, pidgeot_attacks)
 
 
 pokemon_party = []
-all_options = [charizard, blastoise, venusaur, alakazam, snorlax, gyarados, machamp, electabuzz, pidgeot]
+options = [charizard, blastoise, venusaur, alakazam, snorlax, gyarados, machamp, electabuzz, pidgeot]
 
+trainer_name = input("Enter a name ")
 sean = Enemy("Team Rocket Leader Sean", [persian, mewtwo])
 sampai = Enemy("Sam-pai", [murkrow, arbok])
 zachary = Enemy("Zachary", [koffing, houndoom])
-trainer = Trainer("Rodrigo", pokemon_party)
+trainer = Trainer(trainer_name, pokemon_party)
