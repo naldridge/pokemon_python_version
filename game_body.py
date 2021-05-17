@@ -125,6 +125,7 @@ def intro():
     clear()
     oak_img()
     time.sleep(2)
+    clear()
     choose_pokemon(trainer,options)
     one_img()
     choose_pokemon(trainer,options)
@@ -514,7 +515,15 @@ def final_boss_room():
     typingPrint("\"Well no time like the present. You must be strong.\"\n")
     time.sleep(3)
     battle_sean.battle()
+    credits()
 
+def credits():
+    loading()
+    print("Thank you to all who made this game possible. You know who you are!\n"
+    "Battle Sequence Coordinator - Rodrigo Ruiz\n"
+    "Game Orchestral Scoring - Miguel Folgar\n"
+    "Casting Designer/Set Coordinator - Joshua Simon\n"
+    "Screenplay - Nick Aldridge")
 
 battle_sam = Battle(trainer,sampai)
 battle_zachary = Battle(trainer,zachary)
