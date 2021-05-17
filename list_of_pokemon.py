@@ -46,6 +46,8 @@ koffing_attacks = [sludge_bomb, pay_back, acid, tackle]
 houndoom_attacks = [fire_blast, crunch, feint_attack, flamethrower]
 murkrow_attacks = [wing_attack, drill_peck, tackle, pay_back]
 arbok_attacks = [sludge_bomb, crunch, acid, feint_attack]
+grimer_attacks = [acid, feint_attack, tackle, scratch]
+raticate_attacks = [slash, feint_attack, tackle, scratch]
 
 # Pokemon attack list
 charizard_attacks = [flamethrower, wing_attack, slash, fire_blast]
@@ -65,6 +67,8 @@ koffing = Pokemon("Koffing", 120, 120, koffing_attacks)
 houndoom = Pokemon("Houndoom", 130, 130, houndoom_attacks)
 murkrow = Pokemon("Murkrow", 120, 120, murkrow_attacks)
 arbok = Pokemon("Arbok", 130, 130, arbok_attacks)
+grimer = Pokemon("Grimer", 110, 110, grimer_attacks)
+raticate = Pokemon("Raticate", 120, 120, raticate_attacks)
 
 # User Pokemon
 charizard = Pokemon("Charizard", 110, 110, charizard_attacks)
@@ -81,8 +85,9 @@ pidgeot = Pokemon("Pidgeot", 120, 120, pidgeot_attacks)
 pokemon_party = []
 options = [charizard, blastoise, venusaur, alakazam, snorlax, gyarados, machamp, electabuzz, pidgeot]
 
-trainer_name = input("Enter a name ")
+#trainer_name = input("Enter a name ")
 sean = Enemy("Team Rocket Leader Sean", [persian, mewtwo])
 sampai = Enemy("Sam-pai", [murkrow, arbok])
 zachary = Enemy("Zachary", [koffing, houndoom])
+chris = Enemy("Chris", [grimer, raticate])
 trainer = Trainer(trainer_name, pokemon_party)

@@ -3,16 +3,137 @@ from time import sleep
 import time,os,sys
 from effects import *
 from img_ascii import *
+from battle import *
+from validate import *
+from trainer_class import *
+from trainer_class import Trainer
+from trainer_class import Enemy
+from pokemon_class import Pokemon
+from pokemon_class import Attack
+from trainer_class import Trainer
+from trainer_class import Enemy
+from pokemon_class import Pokemon
+from pokemon_class import Attack
+from pokemon_welcome import welcome_menu
+
+welcome_menu()
 
 
 
+flamethrower = Attack("Flamethrower", 40)
+fire_blast = Attack("Fire Blast", 50)
+waterfall = Attack("Waterfall", 40)
+hydro_pump = Attack("Hydro Pump", 50)
+giga_drain = Attack("Giga Drain", 40)
+solar_beam = Attack("Solar Beam", 50)
+wing_attack = Attack("Wing Attack", 35)
+drill_peck = Attack("Drill Peck", 40)
+fly = Attack("Fly", 50)
+tackle = Attack("Tackle", 30)
+scratch = Attack("Scratch", 35)
+rapid_spin = Attack("Rapid Spin", 35)
+slash = Attack("Slash", 35)
+mega_punch = Attack("Mega Punch", 35)
+tri_attack = Attack("Tri Attack", 40)
+hyperbeam = Attack("Hyperbeam", 55)
+feint_attack = Attack("Feint Attack", 35)
+pay_back = Attack("Pay Back", 40)
+crunch = Attack("Crunch", 40)
+thunder_bolt = Attack("Thunder Bolt", 35)
+thunder = Attack("Thunder", 50)
+high_jump_kick = Attack("High Jump Kick", 50)
+confusion = Attack("Confusion", 40)
+psychic = Attack("Psychic", 60)
+psybeam = Attack("Psybeam", 50)
+sludge_bomb = Attack("Sludge Bomb", 40)
+acid = Attack("Acid", 40)
+ice_punch = Attack("Ice Punch", 35)
+ice_beam = Attack("Ice Beam", 50)
+play_rough = Attack("Play Rough", 40)
+
+
+#
+persian_attacks = [scratch, play_rough, feint_attack, pay_back]
+mewtwo_attacks = [psychic, confusion, tri_attack, ice_beam]
+koffing_attacks = [sludge_bomb, pay_back, acid, tackle]
+houndoom_attacks = [fire_blast, crunch, feint_attack, flamethrower]
+murkrow_attacks = [wing_attack, drill_peck, tackle, pay_back]
+arbok_attacks = [sludge_bomb, crunch, acid, feint_attack]
+grimer_attacks = [acid, feint_attack, tackle, scratch]
+raticate_attacks = [slash, feint_attack, tackle, scratch]
+
+# Pokemon attack list
+charizard_attacks = [flamethrower, wing_attack, slash, fire_blast]
+blastoise_attacks = [hydro_pump, waterfall, rapid_spin, crunch]
+venusaur_attacks = [solar_beam, sludge_bomb, acid, giga_drain]
+alakazam_attacks = [confusion, psybeam, tri_attack, flamethrower]
+snorlax_attacks = [hyperbeam, mega_punch, ice_punch, crunch]
+gyarados_attacks = [hydro_pump, waterfall, drill_peck, crunch]
+machamp_attacks = [high_jump_kick, mega_punch, pay_back, ice_punch]
+electabuzz_attacks = [thunder, thunder_bolt, slash, play_rough]
+pidgeot_attacks = [wing_attack, drill_peck, slash, fly]
+
+# Enemy Pokemon
+persian = Pokemon("Persian", 130, 130, persian_attacks)
+mewtwo = Pokemon("Mewtwo", 150, 140, mewtwo_attacks)
+koffing = Pokemon("Koffing", 120, 120, koffing_attacks)
+houndoom = Pokemon("Houndoom", 130, 130, houndoom_attacks)
+murkrow = Pokemon("Murkrow", 120, 120, murkrow_attacks)
+arbok = Pokemon("Arbok", 130, 130, arbok_attacks)
+grimer = Pokemon("Grimer", 110, 110, grimer_attacks)
+raticate = Pokemon("Raticate", 120, 120, raticate_attacks)
+
+# User Pokemon
+charizard = Pokemon("Charizard", 110, 110, charizard_attacks)
+blastoise = Pokemon("Blastoise", 125, 125, blastoise_attacks)
+venusaur = Pokemon("Venusaur", 125, 125, venusaur_attacks)
+alakazam = Pokemon("Alakazam", 110, 110, alakazam_attacks)
+snorlax = Pokemon("Snorlax", 170, 170, snorlax_attacks)
+gyarados = Pokemon("Gyarados", 120, 120, gyarados_attacks)
+machamp = Pokemon("Machamp", 120, 120, machamp_attacks)
+electabuzz = Pokemon("Electabuzz", 120, 120, electabuzz_attacks)
+pidgeot = Pokemon("Pidgeot", 120, 120, pidgeot_attacks)
+
+
+pokemon_party = []
+options = [charizard, blastoise, venusaur, alakazam, snorlax, gyarados, machamp, electabuzz, pidgeot]
+
+trainer_name = input("Enter a name ")
+sean = Enemy("Team Rocket Leader Sean", [persian, mewtwo])
+sampai = Enemy("Sam-pai", [murkrow, arbok])
+zachary = Enemy("Zachary", [koffing, houndoom])
+chris = Enemy("Chris", [grimer, raticate])
+trainer = Trainer(trainer_name, pokemon_party)
+
+def choose_pokemon(trainer, choices):
+    count = 0
+    while len(choices) > count:
+        print(f'{count + 1}. {choices[count].name}')
+        count += 1
+    user_input = Validate().range(1, len(choices), "please enter a valid option. ", " select a pokemon you would like to add to your party.")
+    trainer.pokemon_party.append(choices[user_input - 1])
+    print(f'You chose {choices[user_input - 1].name}!')
+    time.sleep(1)
+    choices.remove(choices[user_input - 1])
+    clear()
 
 def intro():
     print("While walking through a forest, you lose track of your friends... \n")
     time.sleep(3)
     print("Luckily, you have your faithful pokemon with you.")
+    time.sleep(3)
+    clear()
+    oak_img()
+    time.sleep(2)
+    choose_pokemon(trainer,options)
+    one_img()
+    choose_pokemon(trainer,options)
+    two_img()
+    choose_pokemon(trainer,options)
+    three_img()
+    trainer.num_pokemon()
+    time.sleep(3)
 
-#placeholder pokemon selection screen
 
 def game_start():
     #while self.trainer.pokemon_party > 0():
@@ -70,12 +191,24 @@ def gym_entrance():
             #battle time!
             print("You hear someone coming!")
             time.sleep(3)
-            battle1()
+            clear()
+            typingPrint("\"Trying to sneak up on Team Rocket, are ya?\"\n")
+            time.sleep(1)
+            typingPrint("\"We'll see about that.\"")
+            time.sleep(2)
+            battle_sam.battle()
+            hideout_enter()
         elif user_input == "2":
             #battle time anyways
             print("It's too late now!")
             time.sleep(3)
-            battle1()
+            clear()
+            typingPrint("\"Trying to sneak up on Team Rocket, are ya?\"\n")
+            time.sleep(1)
+            typingPrint("\"We'll see about that.\"")
+            time.sleep(2)
+            battle_sam.battle()
+            hideout_enter()
         else:
             invalid_input()
        
@@ -87,6 +220,8 @@ def battle1():
     typingPrint("\"We'll see about that.\"")
     time.sleep(2)
     #run battle
+    
+    battle_sam.battle()
     hideout_enter()
 
 def hideout_enter():
@@ -166,7 +301,7 @@ def hallway1_revisit():
         if user_input == "1":
             print("What do you know! There is a door on your right. Go check it out.")
             #Enter hideout store
-            general_store()
+            #general_store()
         elif user_input == "2":
             print("Is that a movie poster from Tron? What an odd reference in a place like this.")
             time.sleep(5)
@@ -194,6 +329,7 @@ def hallway2():
     typingPrint("\"Well it doesn't matter. Let me show you a cool way to leave... By taking a beating.\"\n")
     time.sleep(3)
     #run battle2
+    battle_chris.battle()
     hallway3_initial()
 
 def hallway3_initial():
@@ -341,9 +477,9 @@ def trainer_room():
     time.sleep(3)
     typingPrint("\"You must be pretty skilled to have made it this far into the Team Rocket Hideout.\"\n")
     time.sleep(3)
-    typingPrint("\"Too bad you won't get any further.\"\n")
+    typingPrint("\"I'm excited to see what you're capable of. Maybe I can give you some tips.\"\n")
     time.sleep(3)
-    #battle3()
+    battle_zachary.battle()
     hallway3_revisit()
 
 def final_boss_room():
@@ -377,6 +513,15 @@ def final_boss_room():
     time.sleep(3)
     typingPrint("\"Well no time like the present. You must be strong.\"\n")
     time.sleep(3)
-    #boss_battle()
+    battle_sean.battle()
 
 
+battle_sam = Battle(trainer,sampai)
+battle_zachary = Battle(trainer,zachary)
+battle_chris = Battle(trainer,chris)
+battle_sean = Battle(trainer,sean)
+
+
+
+intro()
+game_start()
